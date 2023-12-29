@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin: 50px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        input {
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            width: 200px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="button"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type="button"]:hover {
+            background-color: #2980b9;
+        }
+
+        h3 {
+            margin: 20px 0;
+            font-size: 24px;
+            color: red;
+        }
+
+        /* Responsive styling for small screens */
+        @media screen and (max-width: 600px) {
+            input {
+                width: 100%;
+            }
+        }
+
+        /* Add this style for the result */
+        #result {
+            color: black;
+            font-size: 20px;
+            /* Adjust the font size if needed */
+        }
+
+        /* Add this style to make the result number red */
+        #result span {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="number">Put your weight in here (KG) </label>
+    <input type="number" id="num1">
+    <label for="number">And your height in here (Foot)</label>
+    <input type="number" id="num2"><br><br>
+    <input type="button" value="Calculate BMI" onclick="BMI()">
+    <h3 id="result"></h3>
+</body>
+
+</html>
+<script>
+    function BMI() {
+        var number1 = parseInt(document.getElementById("num1").value)
+        var number2 = parseInt(document.getElementById("num2").value)
+        var foot = number2 * 0.3048 // foot will convert the height into CM (centi-meter)
+        var res = (number1) / (foot * foot)
+        console.log(res);
+        
+        if (res <= 18.4) {
+            document.getElementById('result').innerHTML = "Your BMI is <span>" + res + "</span> which means Your are Under Weight";
+        } else if (res >= 18.5 && res <= 24.9) {
+            document.getElementById('result').innerHTML = "Your BMI is <span>" + res + "</span> which means Your are Normal Weight";
+        } else if (res >= 25 && res <= 29.9) {
+            document.getElementById('result').innerHTML = "Your BMI is <span>" + res + "</span> which means Your are OverWeight";
+        } else {
+            document.getElementById('result').innerHTML = "Your BMI is <span>" + res + "</span> which means Your are Obese";
+        }
+    }
+</script>
